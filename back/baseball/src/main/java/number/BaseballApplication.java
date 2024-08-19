@@ -1,4 +1,4 @@
-package number.baseball.game;
+package number;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
