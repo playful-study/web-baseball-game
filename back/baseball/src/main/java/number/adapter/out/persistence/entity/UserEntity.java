@@ -1,4 +1,4 @@
 package number.adapter.out.persistence.entity;
 
-public class MemberEntity {
+public class UserEntity {
 }

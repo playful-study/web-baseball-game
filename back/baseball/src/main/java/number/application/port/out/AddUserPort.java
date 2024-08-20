@@ -1,4 +1,4 @@
 package number.application.port.out;
 
-public interface AddMemberPort {
+public interface AddUserPort {
 }

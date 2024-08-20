@@ -6,7 +6,7 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class Member {
+public class User {
 
     private final Long id;
     private final String nickname;

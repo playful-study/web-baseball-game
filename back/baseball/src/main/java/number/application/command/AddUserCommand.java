@@ -1,4 +1,4 @@
 package number.application.command;
 
-public class AddMemberCommand {
+public class AddUserCommand {
 }
