@@ -11,7 +11,6 @@ const StyledLinkNavbar = styled.div`
 
 const StyledLinkDiv = styled.div`
     display: inline-flex;
-    
     height: 100%;
 `;
 
@@ -21,7 +20,7 @@ const StyledNavLink = styled(NavLink)`
   padding: 0.5em;
   color: #000;
   margin-right: 1.2em;
-
+  
   &.active {
     font-weight: bold;
     color: #ffffff; /* 활성화된 링크의 색상 */
