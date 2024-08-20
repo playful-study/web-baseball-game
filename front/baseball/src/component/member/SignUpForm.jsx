@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react'
+import styled from 'styled-components'
 import StyledA from '../tag/StyledA';
 
-const StyledLoginDiv = styled.div`
+const StyledSignUpDiv = styled.div`
     display: flex;
     flex-direction: column;
     width: 90%;
@@ -24,6 +24,7 @@ const StyledCloseDiv = styled.div`
     padding: 0%;
 `;
 
+
 const SecondDiv = styled.div`
     display: flex;
     justify-content: center;
@@ -34,7 +35,7 @@ const SecondDiv = styled.div`
     }
 `;
 
-const StyledLoginForm = styled.div`
+const StyledSignUpForm = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,7 +48,7 @@ const StyledLoginForm = styled.div`
         border: 1px solid #0E201F;
         border-radius: 0.5em;
         width: 80%;
-        padding: 1em;
+        padding: 0.8em;
         margin: 0.5em 0;    
     }
 
@@ -59,7 +60,7 @@ const StyledLoginForm = styled.div`
         font-weight: 500;
         font-size: 1.1em;
         width: 90%;
-        height: 6vh;
+        height: 5vh;
         padding: 0.3em;
         margin: 0.5em 0;
 
@@ -71,44 +72,25 @@ const StyledLoginForm = styled.div`
     }
 `;
 
-const LoginForm = ({ closeModal }) => {
+const SignUpForm = ({ closeModal }) => {
     // nickname과 password 상태를 useState로 관리
     const [nickname, setNickname] = useState('');
     const [password, setPassword] = useState('');
+    const [checkPassword, setCheckPassword] = useState('');
 
-    const login = () => {
-        // 로그인 로직 (서버로 요청 보내기)
-        fetch(`http://localhost:8080/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ nickname, password })
-        })
-        .then((res) => {
-            if (!res.ok) {
-                throw new Error('로그인 실패');
-            }
-            return res.json();
-        })
-        .then((data) => {
-            console.log(data);
-            // 로그인 성공 후 로직 처리
-        })
-        .catch((err) => {
-            alert('로그인에 실패했습니다.');
-        });
+    const signUp = () => {
+
     }
 
-    return (
-        <StyledLoginDiv>
-            <StyledCloseDiv>
-                <StyledA content="X" click={() => closeModal(false)} />      
-            </StyledCloseDiv>
-            <SecondDiv>
-                <span>로그인</span>
-            </SecondDiv>
-            <StyledLoginForm>
+  return (
+    <StyledSignUpDiv>
+        <StyledCloseDiv>
+            <StyledA content="X" click={() => closeModal(false)} />      
+        </StyledCloseDiv>
+        <SecondDiv>
+            <span>회원가입</span>
+        </SecondDiv>
+        <StyledSignUpForm>
                 <input
                     type="text" 
                     id="nickname" 
@@ -123,15 +105,22 @@ const LoginForm = ({ closeModal }) => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
+                <input
+                    type="password" 
+                    id="check-password" 
+                    placeholder="비밀번호를 한번 더 입력하세요."
+                    value={checkPassword}
+                    onChange={(e) => setCheckPassword(e.target.value)}
+                />
                 <input 
                     type="button" 
                     id="login-btn" 
                     value="Login" 
-                    onClick={() => login()} 
+                    onClick={() => signUp()} 
                 />
-            </StyledLoginForm>
-        </StyledLoginDiv>
-    );
-};
+            </StyledSignUpForm>
+    </StyledSignUpDiv>
+  )
+}
 
-export default LoginForm;
+export default SignUpForm
