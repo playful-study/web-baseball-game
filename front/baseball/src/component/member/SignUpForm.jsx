@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import StyledA from '../tag/StyledA';
+import { useNavigate } from 'react-router-dom';
 
 const StyledSignUpDiv = styled.div`
     display: flex;
@@ -74,13 +75,35 @@ const StyledSignUpForm = styled.div`
 
 const SignUpForm = ({ closeModal }) => {
     // nickname과 password 상태를 state변수로 관리
+    const navigate = useNavigate();
     const [nickname, setNickname] = useState('');
     const [password, setPassword] = useState('');
     const [checkPassword, setCheckPassword] = useState('');
     const [isFetching, setFetching] = useState(false);  //서버에 중복 요청 방지하는 state변수
 
     const signUp = () => {
-
+        // nickname이나 password가 빈값이면 요청 종료 + isFetching 적용 필요
+        // 로그인 로직 (서버로 요청 보내기)
+        fetch(`http://localhost:8080/baseball/users`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ nickname, password, checkPassword })
+        })
+        .then((res) => {
+            if (!res.ok) {
+                throw new Error('로그인 실패');
+            }
+            return res.json();
+        })
+        .then((msg) => {
+            alert(msg);
+            navigate('/');
+        })
+        .catch((err) => {
+            alert(err);
+        });
     }
 
   return (

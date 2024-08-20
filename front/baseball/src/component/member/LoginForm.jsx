@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import StyledA from '../tag/StyledA';
+import { UserContext } from '../../context/UserContext';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const StyledLoginDiv = styled.div`
     display: flex;
@@ -73,14 +75,17 @@ const StyledLoginForm = styled.div`
 
 const LoginForm = ({ closeModal }) => {
     // nickname과 password 상태를 useState로 관리
+    const { login } = useContext(UserContext);
+    const navigate = useNavigate();
     const [nickname, setNickname] = useState('');
     const [password, setPassword] = useState('');
     const [isFetching, setFetching] = useState(false);  //서버에 중복 요청 방지하는 state변수
+    
 
-    const login = () => {
+    const loginMember = () => {
         // nickname이나 password가 빈값이면 요청 종료 + isFetching 적용 필요
         // 로그인 로직 (서버로 요청 보내기)
-        fetch(`http://localhost:8080/login`, {
+        fetch(`http://localhost:8080/baseball/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -96,6 +101,8 @@ const LoginForm = ({ closeModal }) => {
         .then((data) => {
             console.log(data);
             // 로그인 성공 후 로직 처리
+            login(data);
+            navigate('/');
         })
         .catch((err) => {
             alert('로그인에 실패했습니다.');
@@ -129,7 +136,7 @@ const LoginForm = ({ closeModal }) => {
                     type="button" 
                     id="login-btn" 
                     value="Login" 
-                    onClick={() => login()} 
+                    onClick={() => loginMember()} 
                 />
             </StyledLoginForm>
         </StyledLoginDiv>

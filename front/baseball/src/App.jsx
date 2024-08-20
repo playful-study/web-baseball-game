@@ -1,12 +1,15 @@
 import './App.css';
-import { BrowserRouter, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import TotalLayout from './component/layout/TotalLayout';
+import { UserProvider } from './context/UserContext';
 
 function App() {
   return (
-    <BrowserRouter>
-      <TotalLayout/>
-    </BrowserRouter>
+    <UserProvider>
+      <BrowserRouter>
+        <TotalLayout/>
+      </BrowserRouter>
+    </UserProvider>
   );
 }
 
