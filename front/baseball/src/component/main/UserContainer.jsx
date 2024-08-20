@@ -1,5 +1,6 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import styled from 'styled-components'
+import UserSpan from './UserSpan';
 
 const StyledUserDiv = styled.div`
     display: flex;
@@ -16,7 +17,7 @@ const UserContainer = () => {
 
   return (
     <StyledUserDiv>
-        <UserContainer/>
+        <UserSpan/>
     </StyledUserDiv>
   );
 }
