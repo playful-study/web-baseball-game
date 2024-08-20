@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
 import styled from 'styled-components'
-import UserSpan from './UserSpan';
 
 const StyledUserDiv = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #FFFFF5;
@@ -16,7 +16,7 @@ const UserContainer = () => {
 
   return (
     <StyledUserDiv>
-        <UserSpan/>
+        <UserContainer/>
     </StyledUserDiv>
   );
 }
