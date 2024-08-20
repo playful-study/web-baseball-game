@@ -7,7 +7,7 @@ const StyledSignUpDiv = styled.div`
     flex-direction: column;
     width: 90%;
     max-width: 25vw;
-    height: 45vh;
+    height: 50vh;
     max-height: 500px;
     background-color: #ffffff;
     padding: 2%;
