@@ -12,7 +12,7 @@ const StyledUserDiv = styled.div`
     margin-top: 1em;
 `;
 
-const UserDiv = () => {
+const UserContainer = () => {
 
   return (
     <StyledUserDiv>
@@ -21,4 +21,4 @@ const UserDiv = () => {
   );
 }
 
-export default UserDiv
+export default UserContainer

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import UserDiv from './UserDiv';
+import UserContainer from './UserContainer';
 
 const StyledMainContext = styled.div`
 
@@ -9,7 +9,7 @@ const StyledMainContext = styled.div`
 const MainContext = () => {
   return (
     <StyledMainContext>
-      <UserDiv/>
+      <UserContainer/>
     </StyledMainContext>
   )
 }
