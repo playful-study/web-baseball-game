@@ -6,13 +6,19 @@ const CustomA = styled.a`
     color: #0E201F;
     font-size: 24px;
     margin: 1em;
+
+    &:hover {
+      color: #071110;
+      cursor: pointer;
+    }
 `;
 
 export default class StyledA extends Component {
   render() {
-    const {content} = this.props;
+    const {content, click} = this.props;
+    
     return (
-      <CustomA>{content}</CustomA>
+      <CustomA onClick={() => click()}>{content}</CustomA>
     )
   }
 }

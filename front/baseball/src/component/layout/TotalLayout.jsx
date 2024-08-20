@@ -22,7 +22,7 @@ const TotalLayout = () => {
       <LogoNavbar/>
       <LinkNavbar/>
       <Routes>
-        <Route path='' element={<MainLayout/>}/>
+        <Route path='*' element={<MainLayout/>}/>
         <Route path='/gameRoom' element={<GameLayout/>}/>
       </Routes>
       <Footer/>

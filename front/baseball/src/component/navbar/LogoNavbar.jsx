@@ -1,8 +1,10 @@
-import React, { Component, useEffect } from 'react'
+import React, { Component, useContext, useEffect, useState } from 'react'
 import styled from "styled-components";
 
 import NonMember from './NonMember';
 import StyledLogo from '../tag/StyledLogo';
+import Member from './Member';
+import { UserContext } from '../../context/UserContext';
 
 const StyledLogoNavbar = styled.div`
     display: flex;
@@ -17,11 +19,16 @@ const StyledLogoNavbar = styled.div`
 
 
 const LogoNavbar = () => {
+  const {user} = useContext(UserContext);
+  useEffect(() => {
+
+  });
+
   return (
     <StyledLogoNavbar>
       <StyledLogo/>
-        {/*회원이면 로그아웃, 마이페이지로 아니면 로그인, 회원가입으로 */}
-      <NonMember/>
+      {/*회원이면 로그아웃, 마이페이지로 아니면 로그인, 회원가입으로 */}
+      { user ? <Member/> : <NonMember/> }  
     </StyledLogoNavbar>
   )
 }
