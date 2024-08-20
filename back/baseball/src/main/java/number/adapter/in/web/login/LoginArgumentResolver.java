@@ -2,7 +2,7 @@ package number.adapter.in.web.login;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import number.domain.Member;
+import number.domain.User;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -14,9 +14,9 @@ public class LoginArgumentResolver implements HandlerMethodArgumentResolver {
     public boolean supportsParameter(MethodParameter parameter) {
         Class<?> paramClass = parameter.getParameterType();
 
-        boolean isMemberType = paramClass.isAssignableFrom(Member.class);
+        boolean isUserType = paramClass.isAssignableFrom(User.class);
         boolean hasLoginAnnotation = parameter.hasParameterAnnotation(Login.class);
-        return isMemberType && hasLoginAnnotation;
+        return isUserType && hasLoginAnnotation;
     }
 
     @Override
@@ -29,6 +29,6 @@ public class LoginArgumentResolver implements HandlerMethodArgumentResolver {
         if (session == null) {
             return null;
         }
-        return session.getAttribute("loginMember");
+        return session.getAttribute("loginUser");
     }
 }

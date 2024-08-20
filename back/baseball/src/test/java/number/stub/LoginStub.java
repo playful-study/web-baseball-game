@@ -1,11 +1,11 @@
 package number.stub;
 
 import number.adapter.in.web.login.Login;
-import number.domain.Member;
+import number.domain.User;
 
 public class LoginStub {
 
-    public static Member login(@Login Member loginMember) {
-        return loginMember;
+    public static User login(@Login User loginUser) {
+        return loginUser;
     }
 }
