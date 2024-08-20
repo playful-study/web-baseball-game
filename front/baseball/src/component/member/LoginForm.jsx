@@ -75,8 +75,10 @@ const LoginForm = ({ closeModal }) => {
     // nickname과 password 상태를 useState로 관리
     const [nickname, setNickname] = useState('');
     const [password, setPassword] = useState('');
+    const [isFetching, setFetching] = useState(false);  //서버에 중복 요청 방지하는 state변수
 
     const login = () => {
+        // nickname이나 password가 빈값이면 요청 종료 + isFetching 적용 필요
         // 로그인 로직 (서버로 요청 보내기)
         fetch(`http://localhost:8080/login`, {
             method: 'POST',

@@ -73,10 +73,11 @@ const StyledSignUpForm = styled.div`
 `;
 
 const SignUpForm = ({ closeModal }) => {
-    // nickname과 password 상태를 useState로 관리
+    // nickname과 password 상태를 state변수로 관리
     const [nickname, setNickname] = useState('');
     const [password, setPassword] = useState('');
     const [checkPassword, setCheckPassword] = useState('');
+    const [isFetching, setFetching] = useState(false);  //서버에 중복 요청 방지하는 state변수
 
     const signUp = () => {
 
