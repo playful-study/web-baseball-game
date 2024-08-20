@@ -1,8 +1,9 @@
-import React, { Component, useEffect } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import styled from "styled-components";
 
 import NonMember from './NonMember';
 import StyledLogo from '../tag/StyledLogo';
+import Member from './Member';
 
 const StyledLogoNavbar = styled.div`
     display: flex;
@@ -17,11 +18,16 @@ const StyledLogoNavbar = styled.div`
 
 
 const LogoNavbar = () => {
+  const [userCookie, setUserCookie] = useState(undefined);
+  useEffect(() => {
+
+  });
+
   return (
     <StyledLogoNavbar>
       <StyledLogo/>
-        {/*회원이면 로그아웃, 마이페이지로 아니면 로그인, 회원가입으로 */}
-      <NonMember/>
+      {/*회원이면 로그아웃, 마이페이지로 아니면 로그인, 회원가입으로 */}
+      { userCookie ? <Member/> : <NonMember/> }  
     </StyledLogoNavbar>
   )
 }
