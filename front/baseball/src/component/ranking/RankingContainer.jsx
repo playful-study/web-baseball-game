@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCrown } from '@fortawesome/free-solid-svg-icons';
+import RankDiv from './RankDiv';
 
 const StyledRankingContainer = styled.div`
   margin: auto;
@@ -81,42 +80,13 @@ const UserContainer = styled.div`
     & > div:nth-child(odd) {
         background-color: #f2f2f2;
     }
-`;
 
-const RankNumber = styled.span`
-  font-weight: 700;
-  color: #0079ff;
-`;
-
-const UserNickname = styled.span`
-    color: #0E201F;
-  font-weight: 500;
-`;
-
-const GoldCrown = styled(FontAwesomeIcon)`
-    font-size: 1.2em;
-    display: inline;
-    color: #FFCD4E;
-    margin-left: 8px; /* UserNickname과 GoldCrown 사이의 간격 */;
-`;
-
-const SilverCrown = styled(FontAwesomeIcon)`
-    font-size: 1.2em;
-    display: inline;
-    color: #CED5EE;
-    margin-left: 8px; /* UserNickname과 GoldCrown 사이의 간격 */;
-`;
-
-const BronzeCrown = styled(FontAwesomeIcon)`
-    font-size: 1.2em;
-    display: inline;
-    color: #F1C7C7;
-    margin-left: 8px; /* UserNickname과 GoldCrown 사이의 간격 */;
-`;
-
-const WinRate = styled.span`
-  font-weight: 600;
-  color: #0E201F;
+    & > p {
+        display: flex;
+        justify-content: center;
+        padding: 0.5em;
+        margin: 1em;
+    }
 `;
 
 const RankingContainer = () => {
@@ -133,24 +103,30 @@ const RankingContainer = () => {
     { "nickname": "user10", "winRate": "99.40%" },
   ]);
 
+  const [myRank, setMyRank] = useState({
+    "nickname": "me", 
+    "rank": 15,
+    "winRate": "70.40%"
+  });
+
   return (
     <StyledRankingContainer>
       <span>승률 Top 10</span>
       <span>(최소 판수 5판 이상 유저 기준)</span>
       <UserContainer>
         {topTen.map((el, index) => (
-          <div key={index}>
-            <RankNumber>{index + 1}위</RankNumber>
-            <UserNickname>
-                {el.nickname}
-                {index == 0 && <GoldCrown icon={faCrown}/>}
-                {index == 1 && <SilverCrown icon={faCrown}/>}
-                {index == 2 && <BronzeCrown icon={faCrown}/>}
-            </UserNickname>
-            <WinRate>{el.winRate}</WinRate>
-          </div>
+            <RankDiv key={index} data={el} rank={index+1}/> 
         ))}
+        {
+            myRank.rank > 11 &&
+            <>
+                <p>...</p>
+                <RankDiv data={myRank} rank={14}/>
+            </>
+        }
+        
       </UserContainer>
+      
     </StyledRankingContainer>
   );
 };
