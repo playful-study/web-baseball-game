@@ -1,17 +1,13 @@
 package number.adapter.in.web;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import number.adapter.in.dto.LoginDTO;
-import number.application.LoginService;
-import number.application.LogoutService;
 import number.application.command.LoginCommand;
 import number.application.port.in.LoginUseCase;
 import number.application.port.in.LogoutUseCase;
-import number.domain.User;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,18 +19,16 @@ public class LoginController {
     private final LoginUseCase loginUseCase;
     private final LogoutUseCase logoutUseCase;
 
+
     @PostMapping("/login")
-    public ResponseEntity<User> login(@RequestBody LoginDTO loginDTO, HttpServletRequest req) {
+    public ResponseEntity login(@RequestBody LoginDTO loginDTO, HttpServletResponse resp) {
 
-        LoginCommand loginCommand = new LoginCommand("1","2");
+        LoginCommand loginCommand = new LoginCommand(loginDTO.nickname(), loginDTO.password());
         if (loginUseCase.login(loginCommand)) {
-            HttpSession session = req.getSession(false);
-            if (session != null) {
-                User user = (User) session.getAttribute("loginUser");
-                return ResponseEntity.ok(user);
-            }
-
+            Cookie cookie = new Cookie("loginUser", loginDTO.nickname());
+            resp.addCookie(cookie);
+            return ResponseEntity.ok(loginDTO);
         }
-        return ResponseEntity.ok(User.builder().build());
+        return ResponseEntity.
     }
 }
