@@ -6,6 +6,7 @@ import Footer from '../footer/Footer';
 import { Route, Routes } from 'react-router-dom';
 import GameLayout from './GameLayout';
 import LinkNavbar from '../navbar/LinkNavbar';
+import LobbyLayout from './LobbyLayout';
 
 
 const StyledLayout = styled.div`
@@ -22,7 +23,8 @@ const TotalLayout = () => {
       <LogoNavbar/>
       <LinkNavbar/>
       <Routes>
-        <Route path='/' element={<MainLayout/>}/>
+        <Route path='' element={<MainLayout/>}/>
+        <Route path='/lobby/*' element={<LobbyLayout/>}/>
         <Route path='/gameRoom' element={<GameLayout/>}/>
       </Routes>
       <Footer/>
