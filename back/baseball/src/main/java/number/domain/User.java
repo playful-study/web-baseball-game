@@ -1,9 +1,10 @@
 package number.domain;
 
 import lombok.*;
+import number.adapter.out.persistence.entity.UserEntity;
+import number.application.command.AddUserCommand;
 
 @Getter
-@Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class User {
@@ -13,4 +14,20 @@ public class User {
     private final String password;
     private int win;
     private int lose;
+
+    private User(String nickname, String password) {
+        this.id = null;
+        this.nickname = nickname;
+        this.password = password;
+        this.win = 0;
+        this.lose = 0;
+    }
+
+    public static User from(AddUserCommand command) {
+        return new User(command.nickname(), command.password());
+    }
+    public static User from(UserEntity entity) {
+        return new User(entity.getId(), entity.getNickname(),
+                entity.getPassword(), entity.getWin(), entity.getLose());
+    }
 }

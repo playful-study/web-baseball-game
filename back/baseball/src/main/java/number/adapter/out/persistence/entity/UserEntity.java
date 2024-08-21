@@ -2,6 +2,7 @@ package number.adapter.out.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import number.domain.User;
 import org.hibernate.annotations.ColumnDefault;
 
 @Builder
@@ -18,7 +19,7 @@ public class UserEntity {
     @Column(nullable = false)
     private String nickname;
 
-    @Getter(AccessLevel.NONE)
+   // @Getter(AccessLevel.NONE)
     @Column(nullable = false)
     private String password;
 
@@ -29,4 +30,17 @@ public class UserEntity {
     @ColumnDefault("0")
     @Column(nullable = false)
     private int lose;
+
+
+    private UserEntity(String nickname, String password) {
+        this.id = null;
+        this.nickname = nickname;
+        this.password = password;
+        this.win = 0;
+        this.lose = 0;
+    }
+
+    public static UserEntity from(User user) {
+        return new UserEntity(user.getNickname(), user.getPassword());
+    }
 }

@@ -14,15 +14,8 @@ public class AddUserService implements AddUserUseCase {
     private final AddUserPort addUserPort;
 
     @Override
-    public void addUser(AddUserCommand command) {
-        User user = User.builder()
-                .id(null)
-                .nickname(command.getNickname())
-                .password(command.getPassword())
-                .win(0)
-                .lose(0)
-                .build();
-
-        addUserPort.save(user);
+    public User addUser(AddUserCommand command) {
+        User user = User.from(command);
+        return addUserPort.save(user);
     }
 }
