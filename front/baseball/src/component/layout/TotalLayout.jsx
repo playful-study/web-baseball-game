@@ -14,8 +14,10 @@ const StyledLayout = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 70vw;
-  
+  width: 100%;
+  box-sizing: border-box; /* padding과 border를 너비에 포함 */
+  overflow-x: hidden; /* 가로 스크롤 방지 */
+  background-color: #ffffff;
 `;
 
 const TotalLayout = () => {

@@ -1,4 +1,4 @@
-import React, { Component, useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import styled from "styled-components";
 
 import NonMember from './NonMember';
@@ -12,6 +12,7 @@ const StyledLogoNavbar = styled.div`
     align-items: center;
     width: 100vw;
     height: 120px;
+    
     background-color: #ffffff;
     border-bottom: 0.5px solid #0E201F;
 `;
