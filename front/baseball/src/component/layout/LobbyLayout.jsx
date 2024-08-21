@@ -4,9 +4,12 @@ import { Route, Routes } from 'react-router-dom';
 import PvpLobby from '../pvp/PvpLobby';
 import PveLobby from '../pve/PveLobby';
 
-const StyledLobbyLayout = styled.div`
+const StyledLobbyLayout = styled.div` 
+  display: flex;
+  padding: 1em;
+  justify-content: center;
   width: 100vw;
-  height: 100vh;
+  height: 90vh;
   background-color: #EEF7FF;
 `;
 
