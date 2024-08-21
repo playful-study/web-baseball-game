@@ -7,10 +7,9 @@ import { Navigate, useNavigate } from 'react-router-dom';
 const StyledLoginDiv = styled.div`
     display: flex;
     flex-direction: column;
-    width: 90%;
-    max-width: 25vw;
+    min-width: 400px;
+    max-width: 500px;
     height: 45vh;
-    max-height: 500px;
     background-color: #ffffff;
     padding: 2%;
     border-radius: 1em;

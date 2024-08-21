@@ -12,11 +12,6 @@ const NonMember = () => {
 
   const [clickLogin, setClickLogin] = useState(false);
   const [clickSignup, setClickSignup] = useState(false);
-  const toggle = (state) => {
-    console.log(`clickLogin = ${clickLogin}`);
-    console.log(`clickSignup = ${clickSignup}`);
-    return state == true ? false : true;
-  }
 
   return (
     <StyledDiv>

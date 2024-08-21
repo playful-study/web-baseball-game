@@ -6,10 +6,9 @@ import { useNavigate } from 'react-router-dom';
 const StyledSignUpDiv = styled.div`
     display: flex;
     flex-direction: column;
-    width: 90%;
-    max-width: 25vw;
+    min-width: 400px;
+    max-width: 500px;
     height: 50vh;
-    max-height: 500px;
     background-color: #ffffff;
     padding: 2%;
     border-radius: 1em;
