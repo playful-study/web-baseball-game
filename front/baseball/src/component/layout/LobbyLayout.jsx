@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Route, Routes } from 'react-router-dom';
 import PvpLobby from '../pvp/PvpLobby';
 import PveLobby from '../pve/PveLobby';
+import RankingContainer from '../ranking/RankingContainer';
 
 const StyledLobbyLayout = styled.div` 
   display: flex;
@@ -19,6 +20,7 @@ const LobbyLayout = () => {
         <Routes>
             <Route path='/pvp' element={<PvpLobby/>}/>
             <Route path='/pve' element={<PveLobby/>}/>
+            <Route path='ranking' element={<RankingContainer/>}/>
         </Routes>
     </StyledLobbyLayout>
   )

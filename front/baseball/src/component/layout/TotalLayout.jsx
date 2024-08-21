@@ -7,6 +7,7 @@ import { Route, Routes } from 'react-router-dom';
 import GameLayout from './GameLayout';
 import LinkNavbar from '../navbar/LinkNavbar';
 import LobbyLayout from './LobbyLayout';
+import ErrorContainer from '../error/ErrorContainer';
 
 
 const StyledLayout = styled.div`
@@ -23,9 +24,11 @@ const TotalLayout = () => {
       <LogoNavbar/>
       <LinkNavbar/>
       <Routes>
-        <Route path='' element={<MainLayout/>}/>
+        <Route path='/' element={<MainLayout/>}/>
         <Route path='/lobby/*' element={<LobbyLayout/>}/>
         <Route path='/gameRoom' element={<GameLayout/>}/>
+        {/* 모든 유효하지 않은 경로는 에러페이지로 이동하도록 */}
+        <Route path='*' element={<ErrorContainer/>}/>
       </Routes>
       <Footer/>
     </StyledLayout>
