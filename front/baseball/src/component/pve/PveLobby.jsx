@@ -9,7 +9,8 @@ const StyledPveLobbyDiv = styled.div`
   height: 70%;
   padding: 3em;
   background-color: #c1eaec;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 
   /* Scrollbar Styles */
   &::-webkit-scrollbar {
