@@ -58,8 +58,8 @@ const StyledNavLink = styled(NavLink)`
   }
 
   @media (max-width: 500px) {
-    font-size: 1.5em;
-    padding: 1em 0;
+    font-size: 1.2em;
+    padding: 0.8em 0;
     margin-right: 0;
   }
 `;
@@ -67,7 +67,7 @@ const StyledNavLink = styled(NavLink)`
 const MenuIcon = styled(FontAwesomeIcon)`
   font-size: 2em;
   color: #0e201f;
-  margin-right: 1em;
+  margin-right: 0.8em;
 
   &:hover {
     cursor: pointer;
