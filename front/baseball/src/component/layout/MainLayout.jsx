@@ -7,10 +7,7 @@ const MainLayout = () => {
 
   return (
     <div>
-      <Routes>
-        <Route path='*' element={<MainContext/>}/>
-        <Route path='/lobby' element={<LobbyLayout/>}/>
-      </Routes>
+      <MainContext/>
     </div>
   )
 }

@@ -5,9 +5,9 @@ const StyledGameRuleContainer = styled.div`
     background-color: #0079ff;
     width: 100vw;
     height: 100vh;
+    padding: 1em;
 
     & > * {
-        
         color: #ffffff;
     }
 `;

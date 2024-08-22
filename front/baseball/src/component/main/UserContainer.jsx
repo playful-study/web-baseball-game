@@ -11,6 +11,7 @@ const StyledUserDiv = styled.div`
     width: 100vw;
     height: 250px;
     margin-top: 1em;
+    padding: 1em;
 `;
 
 const UserContainer = () => {
