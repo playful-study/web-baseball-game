@@ -1,11 +1,17 @@
 package number.application.command;
 
-import lombok.Builder;
-import lombok.Data;
+import number.adapter.in.dto.AddUserDTO;
+import number.application.exception.CommandBindingException;
 
-@Builder
-@Data
-public class AddUserCommand {
-    private String nickname;
-    private String password;
+
+public record AddUserCommand(String nickname, String password, String checkPassword) {
+
+    public static AddUserCommand from(AddUserDTO dto) {
+
+        if (dto.password().equals(dto.checkPassword())) {
+            return new AddUserCommand(dto.nickname(), dto.password(),
+                    dto.checkPassword());
+        }
+        throw new CommandBindingException();
+    }
 }
