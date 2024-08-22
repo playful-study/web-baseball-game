@@ -3,7 +3,12 @@ import styled from 'styled-components'
 
 const StyledRankingBar = styled.div`
     display: flex;
-    margin-right: 2em;
+    justify-content: center;
+
+    @media (max-width: 500px) {
+      display: none;
+    }
+
 `; 
 const RankingBar = () => {
   return (
