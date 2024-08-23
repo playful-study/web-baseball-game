@@ -1,4 +1,8 @@
 package number.adapter.in.dto;
 
-public class AddUserDTOResponse {
+import lombok.Builder;
+
+@Builder
+public record AddUserDTOResponse(String nickname, double rate) {
+
 }

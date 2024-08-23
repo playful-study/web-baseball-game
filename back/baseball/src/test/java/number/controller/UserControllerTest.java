@@ -1,21 +1,34 @@
-package number;
+package number.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import number.adapter.out.persistence.repository.UserRepository;
+import number.config.TestAppConfig;
 import number.adapter.in.dto.AddUserDTORequest;
 import number.adapter.in.web.controller.UserController;
-import number.application.AddUserService;
-import number.application.GetRankedUserService;
+import number.adapter.out.persistence.entity.UserEntity;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
-@WebMvcTest(controllers = UserController.class)
+//
+//@ExtendWith(SpringExtension.class)
+//@ContextConfiguration(classes = TestAppConfig.class)
+@AutoConfigureMockMvc
+@SpringBootTest
+//@WebMvcTest(controllers = UserController.class)
 class UserControllerTest {
 
     @Autowired
@@ -24,11 +37,12 @@ class UserControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @MockBean
-    private AddUserService addUserService;
+    @Autowired
+    private UserRepository userRepository;
+
 
     @MockBean
-    private GetRankedUserService getRankedUserService;
+    private UserEntity userEntity;
 
     @DisplayName("회원을 등록한다")
     @Test
@@ -44,6 +58,7 @@ class UserControllerTest {
                         .content(objectMapper.writeValueAsString(request))
                         .contentType(MediaType.APPLICATION_JSON)
         )
+                .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

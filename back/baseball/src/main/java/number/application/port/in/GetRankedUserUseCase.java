@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface GetRankedUserUseCase {
     List<User> getRankedUsers(GetRankedUserCommand command);
+
 }

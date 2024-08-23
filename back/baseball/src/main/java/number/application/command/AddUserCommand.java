@@ -1,16 +1,15 @@
 package number.application.command;
 
-import number.adapter.in.dto.AddUserDTO;
+import number.adapter.in.dto.AddUserDTORequest;
 import number.application.exception.CommandBindingException;
 
 
-public record AddUserCommand(String nickname, String password, String checkPassword) {
+public record AddUserCommand(String nickname, String password) {
 
-    public static AddUserCommand from(AddUserDTO dto) {
+    public static AddUserCommand from(AddUserDTORequest dto) {
 
         if (dto.password().equals(dto.checkPassword())) {
-            return new AddUserCommand(dto.nickname(), dto.password(),
-                    dto.checkPassword());
+            return new AddUserCommand(dto.nickname(), dto.password());
         }
         throw new CommandBindingException();
     }
