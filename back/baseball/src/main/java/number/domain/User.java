@@ -26,8 +26,4 @@ public class User {
     public static User from(AddUserCommand command) {
         return new User(command.nickname(), command.password());
     }
-    public static User from(UserEntity entity) {
-        return new User(entity.getId(), entity.getNickname(),
-                entity.getPassword(), entity.getWin(), entity.getLose());
-    }
 }

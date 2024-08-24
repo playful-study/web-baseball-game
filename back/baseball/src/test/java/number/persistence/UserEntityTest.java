@@ -1,6 +1,7 @@
 package number.persistence;
 
 import number.adapter.in.dto.AddUserDTORequest;
+import number.adapter.out.persistence.response.UserResponse;
 import number.adapter.out.persistence.entity.UserEntity;
 import number.adapter.out.persistence.repository.UserRepository;
 import number.application.command.AddUserCommand;
@@ -38,10 +39,10 @@ class UserEntityTest {
     @DisplayName("UserEntity -> UserRepository -> User 변환 테스트")
     @Test
     void userConvert() {
-        UserEntity userEntity = new UserEntity(null, "khan", "1234", 0, 0);
+        UserEntity userEntity = new UserEntity(null, "khan", "1234", 0, 0, 0, 0L);
         userRepository.save(userEntity);
-        User user = User.from(userEntity);
-        Assertions.assertThat(user.getId()).isNotNull();
+        UserResponse userResponse = UserResponse.from(userEntity);
+        Assertions.assertThat(userResponse.nickname()).isEqualTo("khan");
     }
 
 

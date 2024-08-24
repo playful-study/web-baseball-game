@@ -1,6 +1,7 @@
 package number.application;
 
 import lombok.RequiredArgsConstructor;
+import number.adapter.out.persistence.response.UserResponse;
 import number.application.command.AddUserCommand;
 import number.application.port.in.AddUserUseCase;
 import number.application.port.out.AddUserPort;
@@ -14,7 +15,7 @@ public class AddUserService implements AddUserUseCase {
     private final AddUserPort addUserPort;
 
     @Override
-    public User addUser(AddUserCommand command) {
+    public UserResponse addUser(AddUserCommand command) {
         User user = User.from(command);
         return addUserPort.save(user);
     }

@@ -1,10 +1,8 @@
 package number.application.port.out;
 
-import number.adapter.out.persistence.entity.UserEntity;
-
-import java.util.List;
+import number.adapter.out.persistence.response.RankedUsersResponse;
 
 public interface GetRankedUserPort {
 
-    List<UserEntity> getRankedUsers();
+    RankedUsersResponse getRankedUsers(Long userId);
 }

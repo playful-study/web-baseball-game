@@ -2,6 +2,8 @@ package number.adapter.in.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import number.adapter.in.dto.AddUserDTORequest;
+import number.adapter.out.persistence.response.RankedUsersResponse;
+import number.adapter.out.persistence.response.UserResponse;
 import number.application.command.AddUserCommand;
 import number.application.command.GetRankedUserCommand;
 import number.application.port.in.AddUserUseCase;
@@ -20,18 +22,18 @@ public class UserController {
     private final GetRankedUserUseCase getRankedUserUseCase;
 
     @PostMapping("/users")
-    public ResponseEntity<String> addUser(@RequestBody AddUserDTORequest addUserDTORequest) {
+    public ResponseEntity<UserResponse> addUser(@RequestBody AddUserDTORequest addUserDTORequest) {
         AddUserCommand command = AddUserCommand.from(addUserDTORequest);
-        User user = addUserUseCase.addUser(command);
+        UserResponse userResponse = addUserUseCase.addUser(command);
 
-        // 이 부분에서 user = null
-        return ResponseEntity.ok(user.getNickname());
+        return ResponseEntity.ok(userResponse);
     }
 
     @GetMapping("/users")
-    public ResponseEntity<List<User>> getRankedUsers(@CookieValue("loginUser") String userId) {
+    public ResponseEntity<RankedUsersResponse> getRankedUsers(@CookieValue("loginUser") String userId) {
         GetRankedUserCommand command = GetRankedUserCommand.from(userId);
-        List<User> rankedUsers = getRankedUserUseCase.getRankedUsers(command);
-        return ResponseEntity.ok(rankedUsers);
+        RankedUsersResponse rankedResponses = getRankedUserUseCase.getRankedUsers(command);
+
+        return ResponseEntity.ok(rankedResponses);
     }
 }

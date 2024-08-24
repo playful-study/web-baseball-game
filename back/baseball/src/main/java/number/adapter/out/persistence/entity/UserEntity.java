@@ -31,6 +31,12 @@ public class UserEntity {
     @Column(nullable = false)
     private int lose;
 
+    @Transient
+    private double rate;
+
+    @Transient
+    private Long ranking;
+
 
     private UserEntity(String nickname, String password) {
         this.id = null;
@@ -38,6 +44,8 @@ public class UserEntity {
         this.password = password;
         this.win = 0;
         this.lose = 0;
+        this.rate = 0;
+        this.ranking = null;
     }
 
     public static UserEntity from(User user) {

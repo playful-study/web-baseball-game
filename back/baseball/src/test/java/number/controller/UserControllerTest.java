@@ -37,12 +37,6 @@ class UserControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Autowired
-    private UserRepository userRepository;
-
-
-    @MockBean
-    private UserEntity userEntity;
 
     @DisplayName("회원을 등록한다")
     @Test
@@ -60,5 +54,12 @@ class UserControllerTest {
         )
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @DisplayName("랭크 탑10 까지 + 자기자신 랭크를 확인한다")
+    @Test
+    void getRankedUsers() {
+
+
     }
 }
