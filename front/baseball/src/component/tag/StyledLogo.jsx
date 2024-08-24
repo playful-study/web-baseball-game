@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const CustomLogo = styled.div`
   display: flex;
+  justify-content: center;
   align-items: center;
 `; 
 

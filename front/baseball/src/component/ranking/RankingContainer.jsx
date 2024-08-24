@@ -6,7 +6,7 @@ const StyledRankingContainer = styled.div`
   margin: auto;
   width: 35%;
   min-width: 500px;
-  height: 80vh; /* Viewport height를 기준으로 높이 조정 */
+  height: 80%; /* Viewport height를 기준으로 높이 조정 */
   padding: 2em;
   background-color: #1E88E5;
   border-radius: 12px;
