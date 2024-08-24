@@ -1,10 +1,7 @@
 package number.service;
 
-import number.adapter.out.persistence.response.RankedUsersResponse;
-import number.adapter.out.persistence.response.UserResponse;
-import number.application.command.AddUserCommand;
+import number.adapter.dto.response.RankedUsersResponse;
 import number.application.command.GetRankedUserCommand;
-import number.application.port.in.AddUserUseCase;
 import number.application.port.in.GetRankedUserUseCase;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -22,7 +19,7 @@ public class GetRankedServiceTest {
     @DisplayName("Controller 가 Command 넘기면 Repository 에서 RankedUsersResponse 반환")
     @Test
     void transferCommand() {
-        GetRankedUserCommand command = new GetRankedUserCommand(1L);
+        GetRankedUserCommand command = new GetRankedUserCommand("khan");
         RankedUsersResponse response = getRankedUserUseCase.getRankedUsers(command);
         Assertions.assertThat(response).isNotNull();
     }

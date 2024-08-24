@@ -2,7 +2,7 @@ package number.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.Cookie;
-import number.adapter.in.dto.AddUserDTORequest;
+import number.adapter.dto.request.AddUserDTORequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -35,7 +34,7 @@ class UserControllerTest {
     @Test
     void addUser() throws Exception {
         // given
-        AddUserDTORequest request = AddUserDTORequest.builder().nickname("khan")
+        AddUserDTORequest request = AddUserDTORequest.builder().nickname("khan") // 이름 중복되어서 안되는거임.. 지우는 처리과정도 추가하자
                 .password("1234")
                 .checkPassword("1234")
                 .build();
@@ -54,7 +53,7 @@ class UserControllerTest {
     @Test
     void getRankedUsers() throws Exception {
         // given
-        Cookie myCookie = new Cookie("loginUser", "1");
+        Cookie myCookie = new Cookie("loginUser", "khan");
 
         // when // then
         mockMvc.perform(MockMvcRequestBuilders.get("/users")

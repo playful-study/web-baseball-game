@@ -1,7 +1,7 @@
 package number.adapter.out.persistence.adapter.jpa;
 
 import lombok.RequiredArgsConstructor;
-import number.adapter.out.persistence.response.UserResponse;
+import number.adapter.dto.response.UserResponse;
 import number.adapter.out.persistence.entity.UserEntity;
 import number.adapter.out.persistence.repository.UserRepository;
 import number.application.port.out.AddUserPort;

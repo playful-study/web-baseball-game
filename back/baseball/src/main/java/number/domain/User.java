@@ -1,16 +1,16 @@
 package number.domain;
 
 import lombok.*;
-import number.adapter.out.persistence.entity.UserEntity;
 import number.application.command.AddUserCommand;
 
 @Getter
+@Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class User {
 
     private final Long id;
-    private final String nickname;
+    private final String nickname; // nickname 글자수 제한
     private final String password;
     private int win;
     private int lose;

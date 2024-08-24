@@ -1,6 +1,6 @@
 package number.service;
 
-import number.adapter.out.persistence.response.UserResponse;
+import number.adapter.dto.response.UserResponse;
 import number.application.command.AddUserCommand;
 import number.application.port.in.AddUserUseCase;
 import org.assertj.core.api.Assertions;

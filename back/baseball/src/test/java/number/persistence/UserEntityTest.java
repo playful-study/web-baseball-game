@@ -1,7 +1,7 @@
 package number.persistence;
 
-import number.adapter.in.dto.AddUserDTORequest;
-import number.adapter.out.persistence.response.UserResponse;
+import number.adapter.dto.request.AddUserDTORequest;
+import number.adapter.dto.response.UserResponse;
 import number.adapter.out.persistence.entity.UserEntity;
 import number.adapter.out.persistence.repository.UserRepository;
 import number.application.command.AddUserCommand;

@@ -1,17 +1,10 @@
 package number.application.command;
 
-import number.application.exception.CommandBindingException;
 
-public record GetRankedUserCommand(Long userId) {
+public record GetRankedUserCommand(String nickname) {
 
-    public static GetRankedUserCommand from(String userId) {
+    public static GetRankedUserCommand from(String nickname) {
 
-        try {
-            Long id = Long.parseLong(userId);
-            return new GetRankedUserCommand(id);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-            throw new CommandBindingException();
-        }
+        return new GetRankedUserCommand(nickname);
     }
 }

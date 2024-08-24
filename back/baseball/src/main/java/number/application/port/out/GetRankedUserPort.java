@@ -1,8 +1,8 @@
 package number.application.port.out;
 
-import number.adapter.out.persistence.response.RankedUsersResponse;
+import number.adapter.dto.response.RankedUsersResponse;
 
 public interface GetRankedUserPort {
 
-    RankedUsersResponse getRankedUsers(Long userId);
+    RankedUsersResponse getRankedUsers(String nickname);
 }

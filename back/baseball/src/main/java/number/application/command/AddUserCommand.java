@@ -1,6 +1,6 @@
 package number.application.command;
 
-import number.adapter.in.dto.AddUserDTORequest;
+import number.adapter.dto.request.AddUserDTORequest;
 import number.application.exception.CommandBindingException;
 
 

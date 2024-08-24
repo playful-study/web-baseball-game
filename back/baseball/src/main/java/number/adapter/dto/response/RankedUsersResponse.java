@@ -1,4 +1,4 @@
-package number.adapter.out.persistence.response;
+package number.adapter.dto.response;
 
 import java.util.List;
 
