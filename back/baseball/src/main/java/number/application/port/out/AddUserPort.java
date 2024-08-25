@@ -1,7 +1,8 @@
 package number.application.port.out;
 
+import number.adapter.dto.response.UserResponse;
 import number.domain.User;
 
 public interface AddUserPort {
-    User save(User user);
+    UserResponse save(User user);
 }

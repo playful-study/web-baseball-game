@@ -1,4 +1,4 @@
-package number.adapter.in.dto;
+package number.adapter.dto.request;
 
 import lombok.*;
 
