@@ -18,21 +18,13 @@ class UserEntityTest {
     @Autowired
     private UserRepository userRepository;
 
-    @DisplayName("AddUserCommand -> User 변환 테스트")
-    @Test
-    void userCommandConvert() {
-        AddUserDTORequest dto = new AddUserDTORequest("khan", "1234", "1234");
-        AddUserCommand command = AddUserCommand.from(dto);
-        User user = User.from(command);
 
-        Assertions.assertThat(user.getNickname()).isEqualTo("khan");
-    }
 
     @DisplayName("User -> UserEntity 변환 테스트")
     @Test
     void userEntityConvert() {
-        User user = new User(1L, "khan", "1234", 0, 0);
-        UserEntity userEntity = UserEntity.from(user);
+        AddUserCommand command = new AddUserCommand("khan", "1234");
+        UserEntity userEntity = UserEntity.from(command);
         Assertions.assertThat(userEntity.getNickname()).isEqualTo("khan");  // userId = null 인 상태
     }
 
@@ -41,8 +33,8 @@ class UserEntityTest {
     void userConvert() {
         UserEntity userEntity = new UserEntity(null, "khan", "1234", 0, 0, 0, 0L);
         userRepository.save(userEntity);
-        UserResponse userResponse = UserResponse.from(userEntity);
-        Assertions.assertThat(userResponse.nickname()).isEqualTo("khan");
+        User user = User.from(userEntity);
+        Assertions.assertThat(user.getNickname()).isEqualTo("khan");
     }
 
 

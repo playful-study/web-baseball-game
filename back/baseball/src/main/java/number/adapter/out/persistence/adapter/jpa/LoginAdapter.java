@@ -1,7 +1,6 @@
 package number.adapter.out.persistence.adapter.jpa;
 
 import lombok.RequiredArgsConstructor;
-import number.adapter.dto.response.UserResponse;
 import number.adapter.out.persistence.entity.UserEntity;
 import number.adapter.out.persistence.repository.UserRepository;
 import number.application.command.LoginCommand;
@@ -16,7 +15,7 @@ public class LoginAdapter implements LoginPort {
     private final UserRepository userRepository;
 
     @Override
-    public UserResponse loginByNickname(LoginCommand command) {
+    public User loginByNickname(LoginCommand command) {
         String nickname = command.nickname();
         String password = command.password();
 
@@ -24,7 +23,9 @@ public class LoginAdapter implements LoginPort {
                 .filter(u -> u.getPassword().equals(password))
                 .orElse(null);
 
-        return UserResponse.from(userEntity);
-
+        if (userEntity == null) {
+            return null;
+        }
+        return User.from(userEntity);
     }
 }

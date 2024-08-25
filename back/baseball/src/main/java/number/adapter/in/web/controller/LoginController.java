@@ -7,6 +7,7 @@ import number.adapter.dto.request.LoginRequest;
 import number.application.command.LoginCommand;
 import number.application.port.in.LoginUseCase;
 import number.application.port.in.LogoutUseCase;
+import number.domain.User;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,17 +26,17 @@ public class LoginController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<UserResponse> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<Object> login(@RequestBody LoginRequest loginRequest) {
 
         LoginCommand loginCommand = new LoginCommand(loginRequest.nickname(), loginRequest.password());
-        UserResponse userResponse = loginUseCase.login(loginCommand);
+        User user = loginUseCase.login(loginCommand);
 
-        if (userResponse == null) {
+        if (user == null) {
             return ResponseEntity.badRequest()
                     .header(HttpHeaders.LOCATION, URI_HOME + "/login")
-                    .build();
+                    .body("로그인 실패!");
         }
-
+        UserResponse userResponse = UserResponse.from(user);
         Cookie cookie = createCookie(userResponse.nickname());
 
         return ResponseEntity.ok()

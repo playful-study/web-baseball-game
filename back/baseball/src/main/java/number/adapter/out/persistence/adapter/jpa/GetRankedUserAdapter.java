@@ -7,9 +7,11 @@ import number.adapter.out.persistence.repository.UserRepository;
 import number.adapter.dto.response.RankedUsersResponse;
 import number.adapter.dto.response.UserResponse;
 import number.application.port.out.GetRankedUserPort;
+import number.domain.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @RequiredArgsConstructor
 @Repository
@@ -19,16 +21,18 @@ public class GetRankedUserAdapter implements GetRankedUserPort {
     private final UserJdbcRepository userJdbcRepository;
 
     @Override
-    public RankedUsersResponse getRankedUsers(String nickname) {
-        UserEntity userEntity = userRepository.findByNickname(nickname).orElse(null);
+    public List<User> getRankedUsers() {
         List<UserEntity> rankedEntities = userJdbcRepository.findRankedUsers();
+        return rankedEntities.stream().map(User::from).toList();
+    }
 
 
-        UserResponse userResponse = UserResponse.from(userEntity);
-        List<UserResponse> rankedUsersResponses = rankedEntities.stream()
-                .map(UserResponse::from)
-                .toList();
-
-        return new RankedUsersResponse(userResponse, rankedUsersResponses);
+    @Override
+    public User getMyRanking(String nickname) {
+        UserEntity userEntity = userRepository.findByNickname(nickname).orElse(null);
+        if (userEntity == null) {
+            return null;
+        }
+        return User.from(userEntity);
     }
 }
