@@ -146,13 +146,16 @@ const PvpLobby = () => {
     { "no": 5, "name": "드루와", "status": "게임중", "level": "Hard", "players": 2 },
     { "no": 6, "name": "드루와", "status": "대기중", "level": "Medium", "players": 1 },
   ]);
-
   const [selectedPage, setSelectedPage] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
 
   const handlePageClick = (pageNumber) => {
     setSelectedPage(pageNumber);
   };
+
+  useEffect(() => {
+    //서버 통신
+  }, [selectedPage]);
 
   return (
     <StyledPvpLobbyContainer>
