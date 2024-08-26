@@ -1,8 +1,11 @@
 package number.application.port.out;
 
-import number.adapter.dto.response.RankedUsersResponse;
+import number.domain.User;
+
+import java.util.List;
 
 public interface GetRankedUserPort {
 
-    RankedUsersResponse getRankedUsers(String nickname);
+    List<User> getRankedUsers();
+    User getMyRanking(String nickname);
 }

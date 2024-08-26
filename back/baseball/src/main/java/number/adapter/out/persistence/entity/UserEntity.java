@@ -2,6 +2,7 @@ package number.adapter.out.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import number.application.command.AddUserCommand;
 import number.domain.User;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -48,7 +49,7 @@ public class UserEntity {
         this.ranking = null;
     }
 
-    public static UserEntity from(User user) {
-        return new UserEntity(user.getNickname(), user.getPassword());
+    public static UserEntity from(AddUserCommand command) {
+        return new UserEntity(command.nickname(), command.password());
     }
 }

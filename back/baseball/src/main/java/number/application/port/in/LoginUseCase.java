@@ -2,7 +2,8 @@ package number.application.port.in;
 
 import number.adapter.dto.response.UserResponse;
 import number.application.command.LoginCommand;
+import number.domain.User;
 
 public interface LoginUseCase {
-    UserResponse login(LoginCommand command);
+    User login(LoginCommand command);
 }

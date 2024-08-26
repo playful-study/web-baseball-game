@@ -5,6 +5,7 @@ import number.adapter.dto.response.UserResponse;
 import number.application.command.LoginCommand;
 import number.application.port.in.LoginUseCase;
 import number.application.port.out.LoginPort;
+import number.domain.User;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,8 +15,7 @@ public class LoginService implements LoginUseCase {
     private final LoginPort loginPort;
 
     @Override
-    public UserResponse login(LoginCommand command) {
+    public User login(LoginCommand command) {
         return loginPort.loginByNickname(command);
     }
-
 }

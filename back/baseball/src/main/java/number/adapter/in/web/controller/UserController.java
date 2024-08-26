@@ -8,8 +8,11 @@ import number.application.command.AddUserCommand;
 import number.application.command.GetRankedUserCommand;
 import number.application.port.in.AddUserUseCase;
 import number.application.port.in.GetRankedUserUseCase;
+import number.domain.User;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -21,16 +24,18 @@ public class UserController {
     @PostMapping("/users")
     public ResponseEntity<UserResponse> addUser(@RequestBody AddUserDTORequest addUserDTORequest) {
         AddUserCommand command = AddUserCommand.from(addUserDTORequest);
-        UserResponse userResponse = addUserUseCase.addUser(command);
-
-        return ResponseEntity.ok(userResponse);
+        User user = addUserUseCase.addUser(command);
+        UserResponse response = UserResponse.from(user);
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/users")
     public ResponseEntity<RankedUsersResponse> getRankedUsers(@CookieValue("loginUser") String nickname) {
         GetRankedUserCommand command = GetRankedUserCommand.from(nickname);
-        RankedUsersResponse rankedResponses = getRankedUserUseCase.getRankedUsers(command);
+        User user = getRankedUserUseCase.getMyRanking(command);
+        List<User> rankedUsers = getRankedUserUseCase.getRankedUsers();
 
+        RankedUsersResponse rankedResponses = new RankedUsersResponse(user, rankedUsers);
         return ResponseEntity.ok(rankedResponses);
     }
 }

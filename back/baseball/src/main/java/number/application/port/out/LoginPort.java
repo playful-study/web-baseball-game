@@ -1,9 +1,9 @@
 package number.application.port.out;
 
-import number.adapter.dto.response.UserResponse;
 import number.application.command.LoginCommand;
+import number.domain.User;
 
 public interface LoginPort {
 
-    UserResponse loginByNickname(LoginCommand loginCommand);
+    User loginByNickname(LoginCommand loginCommand);
 }

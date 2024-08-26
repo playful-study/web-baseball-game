@@ -15,9 +15,8 @@ public class AddUserService implements AddUserUseCase {
     private final AddUserPort addUserPort;
 
     @Override
-    public UserResponse addUser(AddUserCommand command) {
+    public User addUser(AddUserCommand command) {
         // 입력받은 nickname 과 password 기반으로 User 생성
-        User user = User.from(command);
-        return addUserPort.save(user);
+        return addUserPort.save(command);
     }
 }
