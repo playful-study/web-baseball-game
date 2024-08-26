@@ -28,6 +28,7 @@ const StyledLabel = styled.label`
   justify-content: center;
   cursor: pointer;
   margin-bottom: 3em;
+  text-align: center;
 
   ${(props) =>
     props.checked &&
@@ -36,9 +37,15 @@ const StyledLabel = styled.label`
     color: #ffffff;
     font-weight: 700;
   `}
+
+  &.custom-width {
+    width: fit-content; /* 기본 넓이 */
+    margin: 0.5em;
+    
+  }
 `;
 
-const DifficultyLevelRadioBox = ({ options, onChange }) => {
+const DifficultyLevelRadioBox = ({ options, onChange, className }) => {
   const [selectedLevel, setSelectedLevel] = useState('');
 
   const handleLevelChange = (event) => {
@@ -48,7 +55,7 @@ const DifficultyLevelRadioBox = ({ options, onChange }) => {
   };
 
   return (
-    <StyledLevelcontainer>
+    <StyledLevelcontainer >
       {options.map((option) => (
         <RadioContainer key={option.value}>
           <StyledRadio
@@ -63,6 +70,7 @@ const DifficultyLevelRadioBox = ({ options, onChange }) => {
             htmlFor={option.value}
             checked={selectedLevel === option.value}
             color={option.color}
+            className={className}
           >
             {option.label}
           </StyledLabel>
