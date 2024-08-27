@@ -40,8 +40,16 @@ const LevelSpan = styled.span`
 `;
 
 const Room = ({data}) => {
+
+  const enterRoom = () => {
+    //방에 인원이 2명인지? 근데 이미 가져온 데이터로 확인을 하면 안되는데.. 무결성이 떨어지잖아
+    /*
+      무결성을 보장하기 위해서 해야할 조치
+      2. 웹서버를 열어서 시작.
+    */
+  }
   return (
-    <StyledRoom isProgressing={data.status}>
+    <StyledRoom isProgressing={data.status} onClick={() => enterRoom()}>
       <FirstDiv>
         <span><strong>{data.no}</strong></span>
       </FirstDiv>
