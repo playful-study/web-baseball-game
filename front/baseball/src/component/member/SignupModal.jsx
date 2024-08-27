@@ -12,6 +12,7 @@ const StyledSignUpModal = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
   background-color: rgba(26, 26, 26, 0.67); /* Semi-transparent background */
 `;
 const SignupModal = ({ closeModal }) => {

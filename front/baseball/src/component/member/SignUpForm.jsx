@@ -83,7 +83,7 @@ const SignUpForm = ({ closeModal }) => {
     const signUp = () => {    
         // nickname이나 password가 빈값이면 요청 종료 + isFetching 적용 필요
         // 로그인 로직 (서버로 요청 보내기)
-        fetch(`http://localhost:8080/baseball/users`, {
+        fetch(`http://localhost:8080/users`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -92,7 +92,7 @@ const SignUpForm = ({ closeModal }) => {
         })
         .then((res) => {
             if (!res.ok) {
-                throw new Error('로그인 실패');
+                throw new Error(res.json());
             }
             return res.json();
         })
