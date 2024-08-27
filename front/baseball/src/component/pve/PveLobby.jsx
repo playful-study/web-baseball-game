@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
 import DifficultyLevelRadioBox from '../tag/DifficultyLevelRadioBox';
+import axios from '../../axios';
+import { useNavigate }  from 'react-router-dom';
 
 const StyledPveLobbyDiv = styled.div`
   margin: auto;
@@ -65,12 +67,9 @@ const StyledButtonContainer = styled.div`
 
 const PveLobby = () => {
 
+  const navigate = useNavigate();
   const [level, setLevel] = useState(null);
-  const options = [
-    { value: 'Easy', label: '쉬움(길이: 3)', color: '#0079ff' },
-    { value: 'Medium', label: '보통(길이: 5)', color: '#ff7900' },
-    { value: 'Hard', label: '어려움(길이: 7)', color: '#EF5A6F' },
-  ];
+  
 
   const handleLevel = async (value) => {
     setLevel(value);
@@ -78,8 +77,10 @@ const PveLobby = () => {
   };
 
   const createPveRoom = (e) => {
-    console.log(e);
-    console.log(level);
+    
+    //서버 연동 후 받은 데이터를 가지고 /gameRoom으로 이동 새 창으로 이동할까?
+    // axios.post('')
+    navigate('/gameRoom', {state: {"no": 1, "isPvp": false}})
   
   }
 
@@ -97,7 +98,7 @@ const PveLobby = () => {
         </ul>
       </StyledRuleContainer>
       <h2>난이도</h2>
-      <DifficultyLevelRadioBox options={options} onChange={handleLevel}/>
+      <DifficultyLevelRadioBox onChange={handleLevel}/>
       <StyledButtonContainer>
         <button onClick={(e) => createPveRoom(e)}>시작</button>  
       </StyledButtonContainer>
