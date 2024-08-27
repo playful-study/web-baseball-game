@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import axios from "../../axios";
 import styled from 'styled-components';
 import StyledA from '../tag/StyledA';
 import { UserContext } from '../../context/UserContext';
@@ -84,28 +85,23 @@ const LoginForm = ({ closeModal }) => {
     const loginMember = () => {
         // nickname이나 password가 빈값이면 요청 종료 + isFetching 적용 필요
         // 로그인 로직 (서버로 요청 보내기)
-        fetch(`http://localhost:8080/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ nickname, password })
+        axios.post('/login', {
+            nickname, password
         })
-        .then((res) => {
-            if (!res.ok) {
-                throw new Error('로그인 실패');
-            }
-            return res.json();
+        .then(res => {
+            console.log(res);
+            return res.data;
         })
-        .then((data) => {
+        .then(data => {
             console.log(data);
             // 로그인 성공 후 로직 처리
             login(data);
+            alert("로그인 성공");
             navigate('/');
         })
         .catch((err) => {
-            alert('로그인에 실패했습니다.');
-        });
+            alert(err);
+        })
     }
 
     return (

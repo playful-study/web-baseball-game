@@ -81,20 +81,25 @@ const SignUpForm = ({ closeModal }) => {
 
   const signUp = () => {
     if (isFetching) return;  // 이미 요청 중이면 실행하지 않음
-    if (!nickname || !password || !checkPassword) {
-      alert('모든 필드를 채워주세요.');
-      return;
-    }
-    if (password !== checkPassword) {
-      alert('비밀번호가 일치하지 않습니다.');
-      return;
-    }
+    // if (!nickname || !password || !checkPassword) {
+    //   alert('모든 필드를 채워주세요.');
+    //   return;
+    // }
+    // if (password !== checkPassword) {
+    //   alert('비밀번호가 일치하지 않습니다.');
+    //   return;
+    // }
 
     setFetching(true);  // 요청 시작
 
     axios.post(`/users`, { nickname, password, checkPassword })
       .then(res => {
-        alert('회원가입이 완료되었습니다!');
+        console.log(res);
+        return res.data; 
+      })
+      .then(data => {
+        console.log(data);
+        alert(data);
         navigate('/');  // 회원가입 후 메인 페이지로 이동
       })
       .catch(err => {
