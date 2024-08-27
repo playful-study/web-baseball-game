@@ -1,7 +1,6 @@
 package number.adapter.dto.response;
 
 import lombok.Builder;
-import number.adapter.out.persistence.entity.UserEntity;
 import number.domain.User;
 
 @Builder

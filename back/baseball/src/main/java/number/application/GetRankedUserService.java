@@ -1,7 +1,6 @@
 package number.application;
 
 import lombok.RequiredArgsConstructor;
-import number.adapter.dto.response.RankedUsersResponse;
 import number.application.command.GetRankedUserCommand;
 import number.application.port.in.GetRankedUserUseCase;
 import number.application.port.out.GetRankedUserPort;

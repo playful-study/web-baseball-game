@@ -3,8 +3,8 @@ package number.adapter.out.persistence.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import number.application.command.AddUserCommand;
-import number.domain.User;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Formula;
 
 @Builder
 @Getter
@@ -17,7 +17,8 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
+
+    @Column(nullable = false, unique = true)
     private String nickname;
 
    // @Getter(AccessLevel.NONE)
