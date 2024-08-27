@@ -49,7 +49,7 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.nickname").value("khan"));
     }
 
-    @DisplayName("랭크 탑10 까지 + 자기자신 랭크를 확인한다")
+    @DisplayName("랭크 탑10명과 자기자신 랭크를 확인한다")
     @Test
     void getRankedUsers() throws Exception {
         // given

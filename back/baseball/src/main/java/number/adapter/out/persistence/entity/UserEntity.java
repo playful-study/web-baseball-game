@@ -11,6 +11,7 @@ import org.hibernate.annotations.Formula;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "User")
 public class UserEntity {
 
     @Id
