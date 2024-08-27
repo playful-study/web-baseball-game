@@ -84,7 +84,7 @@ const LoginForm = ({ closeModal }) => {
     const loginMember = () => {
         // nickname이나 password가 빈값이면 요청 종료 + isFetching 적용 필요
         // 로그인 로직 (서버로 요청 보내기)
-        fetch(`http://localhost:8080/baseball/login`, {
+        fetch(`http://localhost:8080/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
