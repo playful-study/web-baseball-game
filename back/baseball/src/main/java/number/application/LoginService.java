@@ -1,7 +1,6 @@
 package number.application;
 
 import lombok.RequiredArgsConstructor;
-import number.adapter.dto.response.UserResponse;
 import number.application.command.LoginCommand;
 import number.application.port.in.LoginUseCase;
 import number.application.port.out.LoginPort;

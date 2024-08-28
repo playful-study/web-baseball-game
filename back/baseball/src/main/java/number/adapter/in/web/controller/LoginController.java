@@ -8,6 +8,7 @@ import number.application.command.LoginCommand;
 import number.application.port.in.LoginUseCase;
 import number.domain.User;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,26 +31,28 @@ public class LoginController {
                     .header(HttpHeaders.LOCATION, URI_HOME + "/login")
                     .body("로그인 실패!");
         }
+
         UserResponse userResponse = UserResponse.from(user);
-        Cookie cookie = createCookie(userResponse.nickname());
+
+        ResponseCookie cookie = ResponseCookie.from("loginUser", userResponse.nickname())
+                .httpOnly(true)
+                .secure(true)
+                .maxAge(-1)
+                .path("/")
+                .build();
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.SET_COOKIE, cookie.toString())
                 .body(userResponse);
     }
 
-    private static Cookie createCookie(String nickname) {
-        Cookie cookie = new Cookie("loginUser", nickname);
-        cookie.setSecure(true);
-        cookie.setHttpOnly(true);
-        cookie.setMaxAge(-1);
-        return cookie;
-    }
 
-    @PostMapping("/logout")
-    public ResponseEntity<Object> logout(@CookieValue("loginUser") String nickname) {
-        Cookie cookie = new Cookie("logoutUser", null);
-        cookie.setMaxAge(0);
+    @GetMapping("/logout")
+    public ResponseEntity<String> logout(@CookieValue("loginUser") String nickname) {
+        ResponseCookie cookie = ResponseCookie.from("loginUser", null)
+                .path("/")
+                .maxAge(0)
+                .build();
 
         return ResponseEntity.ok()
                 .header(HttpHeaders.SET_COOKIE, cookie.toString())
