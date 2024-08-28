@@ -1,4 +1,4 @@
-package number.adapter.in.web;
+package number.adapter.in.web.config;
 
 import number.adapter.in.web.login.LoginArgumentResolver;
 import number.adapter.in.web.login.LoginInterceptor;
@@ -31,6 +31,7 @@ public class WebConfigurer implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:3000")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH")
-                .allowedHeaders("*");
+                .allowedHeaders("*")
+                .allowCredentials(true);
     }
 }
