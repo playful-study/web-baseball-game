@@ -86,7 +86,7 @@ const LoginForm = ({ closeModal }) => {
         // nickname이나 password가 빈값이면 요청 종료 + isFetching 적용 필요
         // 로그인 로직 (서버로 요청 보내기)
         if(isFetching) {
-            alert('로그아웃 진행 중');
+            alert('로그인 진행 중');
             return;
         }
         
