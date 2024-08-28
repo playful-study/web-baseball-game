@@ -138,16 +138,28 @@ const StrongSpan = styled.div`
 `;
 
 const PvpLobby = () => {
+  /*
+    서버가 보내주어야 할 데이터
+    (
+      no(방 반호), 
+      title(방 제목), 
+      status(상태 - 게임중, 대기중), 
+      level(난이도 - "Easy", "Medium", "Hard"),
+      capacity(방에 있는 유저 수),
+      page(페이징 처리를 위한 번호 전체 방 개수, 한 페이지에 표시될 단위 개수, 현재 페이지)
+    )
+  */
   const [rooms, setRooms] = useState([
-    { "no": 1, "name": "드루와", "status": "대기중", "level": "Medium", "players": 1 },
-    { "no": 2, "name": "드루와", "status": "대기중", "level": "Hard", "players": 2 },
-    { "no": 3, "name": "드루와", "status": "대기중", "level": "Easy", "players": 1 },
-    { "no": 4, "name": "드루와", "status": "게임중", "level": "Medium", "players": 2 },
-    { "no": 5, "name": "드루와", "status": "게임중", "level": "Hard", "players": 2 },
-    { "no": 6, "name": "드루와", "status": "대기중", "level": "Medium", "players": 1 },
+    { "id": 1, "title": "드루와", "status": "대기중", "level": "Medium", "capacity": 1 },
+    { "id": 2, "title": "드루와", "status": "대기중", "level": "Hard", "capacity": 2 },
+    { "id": 3, "title": "드루와", "status": "대기중", "level": "Easy", "capacity": 1 },
+    { "id": 4, "title": "드루와", "status": "게임중", "level": "Medium", "capacity": 2 },
+    { "id": 5, "title": "드루와", "status": "게임중", "level": "Hard", "capacity": 2 },
+    { "id": 6, "title": "드루와", "status": "대기중", "level": "Medium", "capacity": 1 },
   ]);
   const [selectedPage, setSelectedPage] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
+  const [showRoom, setShowRoom] = useState(false);
 
   const handlePageClick = (pageNumber) => {
     setSelectedPage(pageNumber);

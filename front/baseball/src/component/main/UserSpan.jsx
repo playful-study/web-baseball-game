@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { UserContext } from '../../context/UserContext';
 
@@ -12,6 +12,8 @@ const StyledUserSpan = styled.div`
 
 const UserSpan = () => {
     const { user } = useContext(UserContext);
+
+    //여기가 새로고침하면 user가 사라짐?
     if(user) {
         return (
             <StyledUserSpan>

@@ -47,20 +47,22 @@ const Room = ({data}) => {
       무결성을 보장하기 위해서 해야할 조치
       2. 웹서버를 열어서 시작.
     */
+   
   }
+
   return (
     <StyledRoom isProgressing={data.status} onClick={() => enterRoom()}>
       <FirstDiv>
-        <span><strong>{data.no}</strong></span>
+        <span><strong>{data.id}</strong></span>
       </FirstDiv>
       <SecondDiv>
         <div>
-          <span>{data.name}</span>          
+          <span>{data.title}</span>          
           <span>{data.status}</span>
         </div>
         <div>
           <span>난이도: <LevelSpan level={data.level}>{data.level}</LevelSpan></span>
-          <span>{data.players}/2</span>
+          <span>{data.capacity}/2</span>
         </div>
       </SecondDiv>
     </StyledRoom>

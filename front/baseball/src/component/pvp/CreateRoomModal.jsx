@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom'; // useNavigate 사용
 import DifficultyLevelRadioBox from '../tag/DifficultyLevelRadioBox';
+import axios from '../../axios'; // axios 사용
 
 const StyledRoomModal = styled.div`
-    position: fixed; /* Fixed positioning for a modal */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -11,7 +13,7 @@ const StyledRoomModal = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.67); /* Semi-transparent background */
+    background-color: rgba(255, 255, 255, 0.67);
 
     & > div {
         width: fit-content;
@@ -31,63 +33,72 @@ const StyledRoomModal = styled.div`
     }
 `;
 
-const CreateRoomModal = ({cancelEvent}) => {
+const CreateRoomModal = ({ cancelEvent }) => {
     const [title, setTitle] = useState('');
     const [level, setLevel] = useState('');
-    const options = [
-        { value: 'Easy', label: '쉬움(길이: 3)', color: '#0079ff' },
-        { value: 'Medium', label: '보통(길이: 5)', color: '#ff7900' },
-        { value: 'Hard', label: '어려움(길이: 7)', color: '#EF5A6F' },
-      ];
+    const navigate = useNavigate(); // navigate 함수 사용
 
-    const handleLevel = async (value) => {
+    const handleLevel = (value) => {
         setLevel(value);
-        console.log(`level = ${level}`);
     };
 
-    const createRoom = () => {
+    const createRoom = async () => {
+        try {
+            // 서버에 방 생성 요청을 보냄
+            const response = await axios.post('/createRoom', {
+                title,
+                level,
+            });
 
-    }
+            // 서버 응답에서 받은 방 ID를 사용하여 방 페이지로 
+            const roomId = response.data.roomId; // 서버가 반환하는 방 ID 사용
+            navigate(`/gameRoom/`); // 해당 방 페이지로 이동
+        } catch (error) {
+            console.error("방 생성 중 오류가 발생했습니다:", error);
+            // 추가적인 오류 처리 로직을 여기에 작성할 수 있습니다.
+        }
+    };
 
-  return (
-    <StyledRoomModal>
-      <div>
-        <table>
-            <tr>
-                <th colSpan={2}>방 만들기</th>
-            </tr>
-            <tr>
-                <th>방제목</th>
-                <th><input
-                    type="text" 
-                    id="title" 
-                    placeholder="방 제목을 입력하세요."
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                /></th>
-            </tr>
-            <tr>
-                <th>난이도</th>
-                <td>
-                    <DifficultyLevelRadioBox 
-                        options={options} 
-                        onChange={handleLevel}
-                        className="custom-width"
-                    />
-                </td>
-            </tr>
-            <tr>
-                <td> 
-                    <input type='button' value='취소' onClick={() => cancelEvent()}/>
-                </td>
-                <td>
-                    <input type='button' value='생성' onClick={() => createRoom()}/>
-                </td>
-            </tr>
-        </table>
-      </div>
-    </StyledRoomModal>
-  )
+    return (
+        <StyledRoomModal>
+            <div>
+                <table>
+                    <tr>
+                        <th colSpan={2}>방 만들기</th>
+                    </tr>
+                    <tr>
+                        <th>방제목</th>
+                        <th>
+                            <input
+                                type="text"
+                                id="title"
+                                placeholder="방 제목을 입력하세요."
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                            />
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>난이도</th>
+                        <td>
+                            <DifficultyLevelRadioBox
+                                onChange={handleLevel}
+                                className="custom-width"
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type='button' value='취소' onClick={() => cancelEvent()} />
+                        </td>
+                        <td>
+                            <input type='button' value='생성' onClick={() => createRoom()} />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </StyledRoomModal>
+    );
 }
 
-export default CreateRoomModal
+export default CreateRoomModal;
