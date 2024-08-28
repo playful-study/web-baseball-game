@@ -95,8 +95,8 @@ const LoginForm = ({ closeModal }) => {
         .then(data => {
             console.log(data);
             // 로그인 성공 후 로직 처리
-            login(data);
             alert("로그인 성공");
+            login(data);
             navigate('/');
         })
         .catch((err) => {

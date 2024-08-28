@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 // UserContext 생성
 export const UserContext = createContext();
@@ -7,14 +7,20 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
+  // 컴포넌트가 처음 렌더링될 때 사용자 정보를 가져오는 함수
+  useEffect(() => {
+    const storedUser = localStorage.getItem("loginUser");
+    setUser(storedUser);
+  }, []);
+
   const login = (userData) => {
-    console.log('여기에 데이터 들어옴?');
-    setUser(userData); // 로그인 시 사용자 정보를 설정
-    console.log(userData);
+    localStorage.setItem("loginUser", userData.nickname);
+    setUser(userData.nickname);
   };
 
   const logout = () => {
-    setUser(null); // 로그아웃 시 사용자 정보를 제거
+    localStorage.removeItem("loginUser");
+    setUser(null);
   };
 
   return (
