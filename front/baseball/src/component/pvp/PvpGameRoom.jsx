@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 /*
 
 */
 const PvpGameRoom = ({ data }) => {
   const[showAnswerInput, setshowAnswerInput] = useState();
-  useEffect()
+  useEffect(()=> {
+
+  }, []);
+
   return (
     <div>
       피비피 게임방

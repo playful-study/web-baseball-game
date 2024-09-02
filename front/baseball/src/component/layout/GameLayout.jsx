@@ -15,11 +15,11 @@ const StyledGameLayout = styled.div`
 
 const GameLayout = () => {
     const location = useLocation();
-    const { roomId, isPvp, level } = location.state || {}; // 기본값 설정
+    const { roomId, isPvp, level } = location.state; // 기본값 설정
     const data = {roomId, level}; //이 부분이 걸린다...
     return (
         <StyledGameLayout>
-            {isPvp ? <PvpGameRoom data={data}/> : <PveGameRoom roomId={roomId}/>}
+            {isPvp ? <PvpGameRoom data={data}/> : <PveGameRoom data={data}/>}
         </StyledGameLayout>
     );
 };
