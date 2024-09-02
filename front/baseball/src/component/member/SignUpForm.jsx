@@ -99,8 +99,8 @@ const SignUpForm = ({ closeModal }) => {
       })
       .then(data => {
         console.log(data);
-        alert(data);
-        navigate('/');  // 회원가입 후 메인 페이지로 이동
+        alert('회원가입 완료');
+        navigate('/');  // 회원가입 후 메인 페이지로 리다이렉팅
       })
       .catch(err => {
         console.error(err);

@@ -69,18 +69,29 @@ const PveLobby = () => {
 
   const navigate = useNavigate();
   const [level, setLevel] = useState(null);
+  const [isFetching, setFetching] = useState(false);
   
 
-  const handleLevel = async (value) => {
+  const handleLevel = (value) => {
     setLevel(value);
     console.log(`level = ${level}`);
   };
 
   const createPveRoom = (e) => {
-    
+    if(!level) {
+      alert('난이도를 선택해주세요.');
+      return;
+    }
+
+    if(isFetching) {
+      alert('방 생성중입니다.');
+      return;
+    }
+
+
     //서버 연동 후 받은 데이터를 가지고 /gameRoom으로 이동 새 창으로 이동할까?
     // axios.post('')
-    navigate('/gameRoom', {state: {"no": 1, "isPvp": false}})
+    navigate('/gameRoom', {state: {"no": 1, "isPvp": false, "level": level}})
   
   }
 

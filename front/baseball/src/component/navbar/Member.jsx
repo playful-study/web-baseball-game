@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from "styled-components";
 import StyledA from '../tag/StyledA';
 import { useContext } from 'react';
-import { UserContext } from '../../context/UserContext';
+import { logout, UserContext } from '../../context/UserContext';
 import axios from '../../axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,20 +11,15 @@ const StyledMemberDiv = styled.div`
 `;
 
 const Member = () => {
-  const { user, logout } = useContext(UserContext);
+  const { logout } = useContext(UserContext);
   const [isFetching, setIsFetching] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(user);
-    
   }, [])
-  const removeCookie = () => {
-    if(!user) {
-      alert('비회원은 로그아웃할 수 없습니다.');
-      return;
-    }
 
+
+  const removeCookie = () => {
     if(isFetching) {
       alert('로그아웃 중입니다');
       return;
@@ -32,20 +27,18 @@ const Member = () => {
 
     setIsFetching(true)
     //axios 통신 보내기
-    axios.post('/logout', {
-      withCredentials: true 
-    })
+    axios.get('/logout')
     .then(res => {
-      console.log(user);
       console.log(res);
       return res.data;
     })
     .then(data => {
+      alert('로그아웃 완료');
       logout();
-      alert(data);
       navigate('/');
     })
     .catch(err => {
+      console.log(err);
       alert(err);
     })
     .finally(() => {

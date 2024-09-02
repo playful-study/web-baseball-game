@@ -85,22 +85,30 @@ const LoginForm = ({ closeModal }) => {
     const loginMember = () => {
         // nickname이나 password가 빈값이면 요청 종료 + isFetching 적용 필요
         // 로그인 로직 (서버로 요청 보내기)
+        if(isFetching) {
+            alert('로그인 진행 중');
+            return;
+        }
+        
+        setFetching(true);
         axios.post('/login', {
             nickname, password
         })
         .then(res => {
-            console.log(res);
             return res.data;
         })
         .then(data => {
             console.log(data);
             // 로그인 성공 후 로직 처리
-            login(data);
             alert("로그인 성공");
+            login(data);
             navigate('/');
         })
-        .catch((err) => {
-            alert(err);
+        .catch(({response}) => {
+            alert(response.data);
+        })
+        .finally(() => {
+            setFetching(false);
         })
     }
 

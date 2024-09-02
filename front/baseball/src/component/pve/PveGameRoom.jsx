@@ -1,10 +1,23 @@
 import React from 'react'
-styled
-const PveGameRoom = () => {
+import styled from 'styled-components'
+import LevelContainer from './LevelContainer';
+
+const StylePveGameRoom = styled.div`
+
+`;
+
+const LeftDiv = styled.div`
+
+`;
+
+const PveGameRoom = ({ roomId }) => {
   return (
-    <div>
+    <StylePveGameRoom>
+      <LeftDiv>
+        <LevelContainer/>
+      </LeftDiv>
       피비이
-    </div>
+    </StylePveGameRoom>
   )
 }
 

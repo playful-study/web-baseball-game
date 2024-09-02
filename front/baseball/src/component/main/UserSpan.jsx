@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { UserContext } from '../../context/UserContext';
+import axios from '../../axios';
 
 const StyledUserSpan = styled.div`
     margin: auto;
@@ -11,14 +12,31 @@ const StyledUserSpan = styled.div`
 `;
 
 const UserSpan = () => {
+    //api 만들어지면 지워질 부분
     const { user } = useContext(UserContext);
+    const [loginUser, setLoginUser] = useState({});
+    const loadUserData = () => {
+        // axios.get('유저 정보')
+        // .then(res => {
+        //     console.log(res);
+        //     return res.data;
+        // })
+        // .then(data => {
+        //     setLoginUser(data);
+        // })
+        // .catch(err => {
+            
+        // })
+    }
+    
+    useEffect(() => loadUserData(), []);
 
-    //여기가 새로고침하면 user가 사라짐?
+    //api 연동 후 loginUser로 바뀌어야 함
     if(user) {
         return (
             <StyledUserSpan>
-                <h2>{user.nickname}님 어서오세요!</h2>
-                <span><strong>나의 전적:</strong> {user.win + user.lose}전 {user.win}승 {user.lose}패</span>
+                <h2>{user}님 어서오세요!</h2>
+                <span><strong>나의 전적:</strong> {loginUser.win + loginUser.lose}전 {loginUser.win}승 {loginUser.lose}패</span>
                 <h3>PVP 모드 또는 PVE 모드로 숫자야구 게임을 즐기세요!</h3>
             </StyledUserSpan>
           )

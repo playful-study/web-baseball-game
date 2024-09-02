@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import PvpGameRoom from '../pvp/PvpGameRoom';
+import PveGameRoom from '../pve/PveGameRoom';
 
 const StyledGameLayout = styled.div`
   width: 100vw;
@@ -13,13 +15,11 @@ const StyledGameLayout = styled.div`
 
 const GameLayout = () => {
     const location = useLocation();
-    const { roomId, isPvp } = location.state || {}; // 기본값 설정
-
+    const { roomId, isPvp, level } = location.state || {}; // 기본값 설정
+    const data = {roomId, level}; //이 부분이 걸린다...
     return (
         <StyledGameLayout>
-            <h1>게임룸 내부</h1>
-            <p>방 번호: {roomId}</p>
-            <p>PvP 모드: {isPvp ? '예' : '아니오'}</p>
+            {isPvp ? <PvpGameRoom data={data}/> : <PveGameRoom roomId={roomId}/>}
         </StyledGameLayout>
     );
 };
