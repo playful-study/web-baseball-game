@@ -13,7 +13,7 @@ const LevelContainer = ({ level }) => {
   const koLevel = level === 'Hard' ? '어려움' : level === 'Easy' ? '쉬움' : '보통';
   return (
     <StyledLevelContainer>
-      <h2>난이도 - {koLevel}</h2>
+      <h2>[ PVE모드 ] 난이도 - {koLevel}</h2>
     </StyledLevelContainer>
   )
 }
