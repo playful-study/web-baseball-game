@@ -91,7 +91,7 @@ const PveLobby = () => {
 
     //서버 연동 후 받은 데이터를 가지고 /gameRoom으로 이동 새 창으로 이동할까?
     // axios.post('')
-    navigate('/gameRoom', {state: {"no": 1, "isPvp": false, "level": level}})
+    navigate('/gameRoom', {state: {"roomId": 1, "isPvp": false, "level": level}})
   
   }
 
