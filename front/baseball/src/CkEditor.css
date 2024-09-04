@@ -19,7 +19,8 @@
 	word-break: break-word;
 }
 
-.editor-container_classic-editor .editor-container__editor {
-	min-width: 795px;
-	max-width: 795px;
-}
+.editor-container__editor {
+	height: 400px; /* 고정된 높이 값 사용 */
+	width: 400px;  /* 고정된 너비 값 사용 */
+  }
+  

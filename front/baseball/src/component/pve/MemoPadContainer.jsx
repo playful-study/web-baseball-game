@@ -7,11 +7,6 @@ const StyledMemoPadContainer = styled.div`
   box-sizing: border-box;
   margin-top: 3em;
 
-  // MyCkEditor의 width를 100%로 수정
-  & .main-container {
-    width: 100%;
-  }
-
   & > h3 {
     margin: 1em;
   }
