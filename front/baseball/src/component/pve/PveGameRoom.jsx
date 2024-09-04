@@ -4,13 +4,18 @@ import LevelContainer from './LevelContainer';
 import PlayerContainer from './PlayerContainer';
 import MemoPadContainer from './MemoPadContainer';
 import ExitButton from '../tag/ExitButton';
+import PredictValueInput from '../tag/PredictValueInput';
 
 const StylePveGameRoom = styled.div`
   display: flex;
   width: 80vw;
-  height: 90vh;
+  height: 80vh;
   & > * {
     margin: 2em;
+  }
+
+  @media (max-width: 1100px) {
+    //일렬로 정렬
   }
 `;
 
@@ -25,13 +30,14 @@ const LeftDiv = styled.div`
 const RightDiv = styled.div`
   width: 60%;
   height: 100%;
-  padding: 2em;
   box-sizing: border-box;
+  margin-bottom: 2em;
+
 `;
 
 const InputAndLogDiv = styled.div`
   width: 100%;
-  height: 100%;
+  height: 80%;
   box-sizing: border-box;
   background-color: #77D8D8;
 `;
@@ -53,6 +59,7 @@ const PveGameRoom = ({ data }) => {
       <RightDiv>
         <ExitButton/>
         <InputAndLogDiv>
+          <PredictValueInput level={data?.level}/>
           
         </InputAndLogDiv>
       </RightDiv>

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
+import styled from "styled-components";
 
 import {
 	ClassicEditor,
@@ -25,9 +26,14 @@ import translations from 'ckeditor5/translations/ko.js';
 import 'ckeditor5/ckeditor5.css';
 import '../../CkEditor.css';
 
+const TextAreaDiv = styled.div`
+	width: 100%;
+	height: 50vh;
+	overflow-y: auto;
+`;
+
 export default function MyCkEditor() {
 	const editorContainerRef = useRef(null);
-	const editorRef = useRef(null);
 	const [isLayoutReady, setIsLayoutReady] = useState(false);
 
 	useEffect(() => {
@@ -94,9 +100,9 @@ export default function MyCkEditor() {
 		<div className="main-container">
 			<div className="editor-container" ref={editorContainerRef}>
 				<div className="editor-container__editor">
-					<div ref={editorRef} style={{ width: '100%', height: '50vh', overflowY: 'auto' }}>
+					<TextAreaDiv className='textarea' style={{ }}>
 						{isLayoutReady && <CKEditor editor={ClassicEditor} config={editorConfig} />}
-					</div>
+					</TextAreaDiv>
 				</div>
 			</div>
 		</div>
