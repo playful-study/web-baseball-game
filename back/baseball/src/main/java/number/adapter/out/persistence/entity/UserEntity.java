@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import number.application.command.AddUserCommand;
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.Formula;
 
 @Builder
 @Getter
