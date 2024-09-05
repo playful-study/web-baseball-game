@@ -28,9 +28,7 @@ const StyledPlayerContainer = styled.div`
             font-size: 1.5em;
             color: #ffffff;
         }
-    }
-
-    
+    }  
 `;
 
 const PlayerContainer = () => {
@@ -41,7 +39,7 @@ const PlayerContainer = () => {
                 <span>{user}</span>
             </div>
             <div>
-                <span>컴퓨터</span>
+                {/* <span>{isPvp ? player : '컴퓨터'}</span> */}
             </div>
         </StyledPlayerContainer>
     )

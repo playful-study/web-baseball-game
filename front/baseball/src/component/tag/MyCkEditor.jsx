@@ -28,7 +28,7 @@ import '../../CkEditor.css';
 
 const TextAreaDiv = styled.div`
 	width: 100%;
-	height: 50vh;
+	height: 80%;
 	overflow-y: auto;
 `;
 

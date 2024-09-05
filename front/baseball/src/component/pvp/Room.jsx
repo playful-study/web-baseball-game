@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
 
 const StyledRoom = styled.div`
@@ -40,13 +41,14 @@ const LevelSpan = styled.span`
 `;
 
 const Room = ({data}) => {
-
+  const navigate = useNavigate();
   const enterRoom = () => {
     //방에 인원이 2명인지? 근데 이미 가져온 데이터로 확인을 하면 안되는데.. 무결성이 떨어지잖아
     /*
       무결성을 보장하기 위해서 해야할 조치
       2. 웹서버를 열어서 시작.
     */
+      navigate('/gameRoom', {state: {"roomId": data.id, "isPvp": true, "level": data.level}})
    
   }
 
