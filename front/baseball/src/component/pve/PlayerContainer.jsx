@@ -28,7 +28,9 @@ const StyledPlayerContainer = styled.div`
             font-size: 1.5em;
             color: #ffffff;
         }
-    }  
+    }
+
+    
 `;
 
 const PlayerContainer = () => {

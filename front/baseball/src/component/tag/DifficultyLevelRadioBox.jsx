@@ -49,9 +49,9 @@ const DifficultyLevelRadioBox = ({ onChange, className }) => {
   const [selectedLevel, setSelectedLevel] = useState('');
 
   const options = [
-    { value: 'Easy', label: '쉬움(길이: 4)', color: '#0079ff' },
+    { value: 'Easy', label: '쉬움(길이: 3)', color: '#0079ff' },
     { value: 'Medium', label: '보통(길이: 5)', color: '#ff7900' },
-    { value: 'Hard', label: '어려움(길이: 6)', color: '#EF5A6F' },
+    { value: 'Hard', label: '어려움(길이: 7)', color: '#EF5A6F' },
   ];
   
   const handleLevelChange = (event) => {

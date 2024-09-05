@@ -1,5 +1,4 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
 
 const StyledExitDiv = styled.div`
@@ -21,18 +20,10 @@ const StyledExitDiv = styled.div`
 `;
 
 
-const ExitButton = ({isPvp}) => {
-  const navigate = useNavigate();
-  const moveToLobby = (isPvp) => {
-    if(isPvp) {
-      navigate('/lobby/pvp');
-    } else {
-      navigate('/lobby/pve')
-    }
-  }
+const ExitButton = () => {
   return (
     <StyledExitDiv>
-        <button onClick={() => moveToLobby()}>나가기</button>
+        <button>나가기</button>
     </StyledExitDiv>
     
   )

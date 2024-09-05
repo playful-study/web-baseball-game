@@ -21,6 +21,6 @@
 
 .editor-container__editor {
 	height: 400px; /* 고정된 높이 값 사용 */
-	width: 450px;  /* 고정된 너비 값 사용 */
+	width: 400px;  /* 고정된 너비 값 사용 */
   }
   
