@@ -27,13 +27,6 @@ public class RedisConfiguration {
     }
 
     @Bean
-    RedisMessageListenerContainer redisContainer() {
-        RedisMessageListenerContainer container = new RedisMessageListenerContainer();
-        container.setConnectionFactory(redisConnectionFactory());
-        return container;
-    }
-
-    @Bean
     public RedisTemplate<String, Object> redisTemplate() {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(redisConnectionFactory());
@@ -41,6 +34,4 @@ public class RedisConfiguration {
         template.setValueSerializer(new Jackson2JsonRedisSerializer<>(String.class));
         return template;
     }
-
-
 }

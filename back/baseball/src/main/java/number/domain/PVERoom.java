@@ -9,10 +9,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChatRoom {
+public class PVERoom {
 
-    private Long chatRoomId;
-    private String roomName;
-    private Long userCount;
+    private Long pveRoomId;
+    private String pveRoomName;
+    private Level level;
+    private String userName;
 
 }
