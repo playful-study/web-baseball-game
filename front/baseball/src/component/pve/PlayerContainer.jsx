@@ -39,7 +39,7 @@ const PlayerContainer = () => {
                 <span>{user}</span>
             </div>
             <div>
-                <span>컴퓨터</span>
+                {/* <span>{isPvp ? player : '컴퓨터'}</span> */}
             </div>
         </StyledPlayerContainer>
     )
